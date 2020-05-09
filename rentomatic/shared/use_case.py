@@ -1,9 +1,11 @@
-from rentomatic.shared import response_object as res
+from typing import Union, NoReturn
 
+from rentomatic.shared import response_object as res
+from rentomatic.shared import request_object as req 
 
 class UseCase(object):
 
-    def execute(self, request_object):
+    def execute(self, request_object: req.InvalidRequestObject):
         if not request_object:
             return res.ResponseFailure.build_from_invalid_request_object(request_object)
         try:
