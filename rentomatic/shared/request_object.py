@@ -1,6 +1,11 @@
 from typing import List, Dict, Any
 
-class InvalidRequestObject(object):
+class RequestObject():
+    def __nonzero__(self):
+        raise NotImplementedError
+    
+
+class InvalidRequestObject(RequestObject):
 
     def __init__(self):
         self.errors: List[dict] = []
@@ -17,8 +22,7 @@ class InvalidRequestObject(object):
     __bool__ = __nonzero__
 
 
-class ValidRequestObject(object):
-
+class ValidRequestObject(RequestObject):
     @classmethod
     def from_dict(cls, adict:Dict[str, Any]):
         raise NotImplementedError

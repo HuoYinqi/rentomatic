@@ -13,7 +13,7 @@ class StorageRoom():
         self.longitude = longitude
 
     @classmethod
-    def from_dict(cls, adict: Dict[str, Any]) -> 'StorageRoom':
+    def from_dict(cls, adict: Dict[str, Any]):
         room = StorageRoom(
             code=adict['code'],
             size=adict['size'],
@@ -33,12 +33,10 @@ class StorageRoom():
             'longitude': self.longitude,
         }
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other):
         if not isinstance(other, StorageRoom):
             return NotImplemented
         return self.to_dict() == other.to_dict()
 
 
 DomainModel.register(StorageRoom)
-print('Hi')
-a = 1

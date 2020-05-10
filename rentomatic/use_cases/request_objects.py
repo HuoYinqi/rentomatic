@@ -1,6 +1,6 @@
 import collections.abc
 
-from typing import Dict, Union, Optional
+from typing import Dict, Optional
 
 from rentomatic.shared import request_object as req
 
@@ -11,13 +11,14 @@ class StorageRoomListRequestObject(req.ValidRequestObject):
         self.filters = filters
 
     @classmethod
-    def from_dict(cls, adict: Dict[str, dict]) -> Union['StorageRoomListRequestObject', req.InvalidRequestObject]:
-        invalid_req = req.InvalidRequestObject() # type: req.InvalidRequestObject
+    def from_dict(cls, adict: Dict[str, dict]):
+        invalid_req = req.InvalidRequestObject()
 
         if 'filters' in adict and not isinstance(adict['filters'], collections.abc.Mapping):
             invalid_req.add_error('filters', 'Is not iterable')
 
         if invalid_req.has_errors():
-            return invalid_req
+            # type: req.InvalidRequestObject
+            return invalid_req 
             
         return StorageRoomListRequestObject(filters=adict.get('filters', None))
