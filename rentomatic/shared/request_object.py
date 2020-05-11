@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 
 class RequestObject():
-    def __nonzero__(self):
+    def __nonzero__(self) -> bool:
         raise NotImplementedError
     
 

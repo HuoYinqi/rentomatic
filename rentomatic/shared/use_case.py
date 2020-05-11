@@ -5,7 +5,8 @@ from rentomatic.shared import request_object as req
 
 class UseCase(object):
 
-    def execute(self, request_object: req.InvalidRequestObject) -> res.Response:
+    def execute(self, request_object: req.InvalidRequestObject) -> res.ResponseFailure:
+        # if isinstance(request_object, req.InvalidRequestObject):
         if not request_object:
             return res.ResponseFailure.build_from_invalid_request_object(request_object)
         try:
@@ -14,6 +15,6 @@ class UseCase(object):
             return res.ResponseFailure.build_system_error(
                 "{}: {}".format(exc.__class__.__name__, "{}".format(exc)))
 
-    def process_request(self, request_object) -> res.ResponseSuccess:
+    def process_request(self, request_object):
         raise NotImplementedError(
             "process_request() not implemented by UseCase class")
